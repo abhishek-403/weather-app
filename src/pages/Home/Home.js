@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import EachDay from '../../components/EachDay/EachDay';
 import './home.scss'
 function Home(props) {
-    const [myData,setMyData]=useState([])
     let img2 = require('../../assets/50d.svg')
 
     if (props.todayData[0]?.weather[0]?.icon !== undefined) {
@@ -10,11 +9,7 @@ function Home(props) {
 
     }
 
-    useEffect(()=>{
-        setMyData(props.myData)
-
-    },[])
-
+   
     return (
         <div className='home'>
 
@@ -57,7 +52,7 @@ function Home(props) {
 
 
                     {
-                        myData.splice(1)?.map((item, i) => {
+                        props.myData.splice(1)?.map((item, i) => {
 
                             return (
                                 <EachDay key={i} props={item} />
