@@ -20,6 +20,9 @@ function App() {
 
 
   function conversion(temp) {
+    if(temp <100){
+      return temp;
+    }
     return (temp - 273).toFixed(1);
   }
 
@@ -32,6 +35,7 @@ function App() {
       const response = await fetch(`
         https://api.openweathermap.org/data/2.5/forecast?q=${search.current.value===""?'delhi':search.current.value}&APPID=${apiKey}`);
       const data = await response.json();
+      // console.log(data);
 
       if (data.cod === '404') {
 
@@ -40,7 +44,6 @@ function App() {
           type: TOAST_FAILURE,
           message: "City not found"
         })
-        // fetchData()
         return;
       }
 
@@ -89,7 +92,7 @@ function App() {
       setTimeout(() => {
         setLoading(false)
 
-      },500);
+      },700);
     }
 
   }
